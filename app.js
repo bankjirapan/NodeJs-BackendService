@@ -1,16 +1,18 @@
 
 const express = require('express');
+const bodyPaser = require('body-parser');
+
+const shopRouter = require('./routes/shop');
+const adminRouter = require('./routes/admin');
 
 const app = express();
 
-app.use((req, res, next) => {
-  console.log('this is middleware');
-  next();
-});
+app.use(shopRouter);
+app.use(adminRouter);
 
-app.use((req, res, next) => {
-  console.log('this anotger middleware');
-  res.send('<h1>Hello world</h1>')
-});
+app.use(bodyPaser.urlencoded({extended: false}))
 
+
+
+// App runing
 app.listen(3000);
