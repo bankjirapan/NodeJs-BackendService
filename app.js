@@ -10,7 +10,9 @@ const app = express();
 app.use(shopRouter);
 app.use(adminRouter);
 
+
 app.use(bodyPaser.urlencoded({extended: false}))
+app.use(express.static(path.join(__dirname,'public')));
 
 app.use((req,res) =>{
   res.sendStatus(404).sendFile(path.join(__dirname,'../','views','404.html'));
