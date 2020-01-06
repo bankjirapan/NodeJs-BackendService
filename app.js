@@ -1,7 +1,7 @@
 
 const express = require('express');
 const bodyPaser = require('body-parser');
-
+const path = require('path');
 const shopRouter = require('./routes/shop');
 const adminRouter = require('./routes/admin');
 
@@ -12,6 +12,9 @@ app.use(adminRouter);
 
 app.use(bodyPaser.urlencoded({extended: false}))
 
+app.use((req,res) =>{
+  res.sendStatus(404).sendFile(path.join(__dirname,'../','views','404.html'));
+})
 
 
 // App runing
