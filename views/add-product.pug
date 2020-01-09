@@ -1,31 +1,13 @@
-<!DOCTYPE html>
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title #{PageTitle}
-        link(href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh', crossorigin='anonymous')
-        link(rel='stylesheet', href='/css/style.css')
-    body
+extends layouts/main-layout.pug
 
-     nav.navbar.navbar-expand-lg.navbar-light.bg-light
-      a.navbar-brand(href='#') Product
-      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-        span.navbar-toggler-icon
-      #navbarSupportedContent.collapse.navbar-collapse
-        ul.navbar-nav.mr-auto
-          li.nav-item.active
-            a.nav-link(href='/')
-              | Shop 
-              span.sr-only (current)
-          li.nav-item
-            a.nav-link(href='#') Add Product
-          li.nav-item
-            a.nav-link.disabled(href='#') Disabled
+block styles
+    link(rel="stylesheet", href="/css/forms.css")
+    link(rel="stylesheet", href="/css/product.css")
 
-    main(class="container mt-5")
-        form(action="add-product" method="POST")
-            label Title product
-            input.form-control(type="text" name="title")
-            button.btn.btn-info.mt-2(type="submit") Add Product
+block content
+    main
+        form.product-form(action="/admin/add-product", method="POST")
+            .form-control
+                label(for="title") Title
+                input(type="text", name="title")#title
+            button.btn(type="submit") Add Product
