@@ -8,8 +8,13 @@ const rootDir = require('./util/path');
 
 const app = express();
 
+app.set('view engine','pug');
+app.set('views','views');
+
 app.use(bodyPaser.urlencoded({extended: false}))
+
 app.use(shopRouter);
+app.use(adminRouter.routes);
 app.use('/admin',adminRouter.routes);
 
 
