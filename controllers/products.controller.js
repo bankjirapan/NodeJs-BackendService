@@ -17,11 +17,13 @@ exports.postAddProduct = (req, res) => {
 };
 
 exports.getProduct = (req, res, next) => {
-  const products = productModel.fetchAll();
-  res.render('shop', {
-    prods: products,
-    pageTitle: 'Shop',
-    path: '/'
+  productModel.fetchAll(products =>{
+    res.render('shop', {
+      prods: products,
+      pageTitle: 'Shop',
+      path: '/'
+    });
   });
+  
   //  res.sendFile(path.join(rootDir,'views','shop.html' ));
 };
