@@ -1,7 +1,1 @@
-[{
-    "id":"1223",
-    "title":"A Book",
-    "imageUrl":"https://miro.medium.com/max/11400/1*lS9ZqdEGZrRiTcL1JUgt9w.jpeg",
-    "description":"This is an awesome book!",
-    "price":"19"
-    }]
+[{"id":"1223","title":"A Book","imageUrl":"https://miro.medium.com/max/11400/1*lS9ZqdEGZrRiTcL1JUgt9w.jpeg","description":"This is an awesome book!","price":"19"},{"title":"Hi","imageUrl":"","description":"fsf\r\n","price":"121","id":"0.12348377821278023"}]
