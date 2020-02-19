@@ -75,22 +75,6 @@ Order.belongsToMany(Product, { through: OrderItems });
 sequelize
   .sync({ force: false })
   .then(result => {
-    return User.findById(1);
-    // console.log(result);
-  })
-  .then(user => {
-    if (!user) {
-      return User.create({
-        name: 'llUJO',
-        email: 'bank@bank.com'
-      });
-    }
-    return user;
-  })
-  .then(user => {
-    return user.createCart();
-  })
-  .then(cart => {
     app.listen(3000);
   })
   .catch(err => {
