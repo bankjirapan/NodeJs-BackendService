@@ -7,13 +7,13 @@
    <%- include('../includes/navigation.ejs') %>
 
     <main>
-        <form class="product-form" action="/admin/login" method="POST">
+        <form class="product-form" action="login" method="POST">
             <div class="form-control">
-                <label for="username">Title</label>
-                <input type="text" name="username" id="username">
+                <label for="username">Username</label>
+                <input type="text" name="email" id="username">
             </div>
             <div class="form-control">
-                <label for="password">Image URL</label>
+                <label for="password">Password</label>
                 <input type="password" name="password" id="password">
             </div>
 
