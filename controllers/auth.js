@@ -12,12 +12,29 @@ exports.getLogin = (req, res, next) => {
 
 exports.postLogin = (req, res, next) => {
   // res.cookie('loggedIn',true,{maxAge: 360000});
+  const password = req.body.password;
   user
     .findOne({ where: { email: req.body.email } })
     .then(result => {
-      req.session.user = result;
-      req.session.isLoggedIn = true;
-      res.redirect('/');
+      if(!result){
+        return res.redirect('/login');
+      }
+       bcrypt
+        .compare(password, result.password)
+        .then(macth => {
+          if (macth) {
+            req.session.user = result;
+            req.session.isLoggedIn = true;
+            return req.session.save(err =>{
+              console.log(err)
+              res.redirect('/');
+            })
+      
+          }
+        })
+        .catch(err => {
+          res.redirect('/login');
+        });
     })
     .catch(err => {
       console.log(err);

@@ -38,14 +38,13 @@
             <li class="main-header__item">
                 <a class="<%= path === '/register' ? 'active' : '' %>" href="/register">Register</a>
             </li>
+            <% } else { %>
+                <li class="main-header__item">
+                    <form action="logout" method="post">
+                     <button type="submit">Logout</button>
+                 </form>
+                 </li>
             <% } %>
-            <% if (isAuthenticated) { %>
-            <li class="main-header__item">
-                <form action="logout" method="post">
-                 <button type="submit">Logout</button>
-             </form>
-             </li>
-             <% } %>
         </ul>
     </nav>
 </header>
