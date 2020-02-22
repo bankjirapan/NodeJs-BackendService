@@ -5,6 +5,7 @@ const sequelize = require('./util/database');
 const errorController = require('./controllers/error');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
+const csrf = require('csurf');
 
 const app = express();
 
@@ -42,6 +43,10 @@ app.use(
     saveUninitialized: false
   })
 );
+
+const csrfProtection = csrf();
+
+app.use(csrfProtection);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
@@ -53,6 +58,13 @@ app.use((req, res, next) => {
     .catch(() => {
       console.log('err');
     });
+});
+
+app.use((req,res,next) =>{
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+
+  next();
 });
 
 app.use('/admin', adminRoutes);

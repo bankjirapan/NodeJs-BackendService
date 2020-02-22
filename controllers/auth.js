@@ -19,7 +19,7 @@ exports.postLogin = (req, res, next) => {
       if(!result){
         return res.redirect('/login');
       }
-       bcrypt
+        bcrypt
         .compare(password, result.password)
         .then(macth => {
           if (macth) {
@@ -30,6 +30,8 @@ exports.postLogin = (req, res, next) => {
               res.redirect('/');
             })
       
+          }else{
+            res.redirect('/login');
           }
         })
         .catch(err => {
@@ -37,6 +39,7 @@ exports.postLogin = (req, res, next) => {
         });
     })
     .catch(err => {
+      res.redirect('/login')
       console.log(err);
     });
 };
