@@ -6,6 +6,7 @@ const errorController = require('./controllers/error');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const csrf = require('csurf');
+const flash = require('connect-flash');
 
 const app = express();
 
@@ -48,7 +49,7 @@ const csrfProtection = csrf();
 
 app.use(csrfProtection);
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(flash());
 app.use((req, res, next) => {
   User.findById(1)
     .then(user => {

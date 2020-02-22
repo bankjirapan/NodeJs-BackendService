@@ -1,11 +1,13 @@
 const user = require('../models/user');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 exports.getLogin = (req, res, next) => {
   // const isLoggedIn = req.get('Cookie').split(";")[1].trim().split("=")[1]
   console.log(req.session.isLoggedIn);
   res.render('auth/login', {
     pageTitle: 'Admin Login',
     path: '/login',
+    errorMessage : req.flash('invalid'),
     isAuthenticated: req.session.isLoggedIn
   });
 };
@@ -17,6 +19,7 @@ exports.postLogin = (req, res, next) => {
     .findOne({ where: { email: req.body.email } })
     .then(result => {
       if(!result){
+        req.flash('invalid','invalid email or password');
         return res.redirect('/login');
       }
         bcrypt

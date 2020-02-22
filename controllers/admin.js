@@ -107,6 +107,7 @@ exports.postDeleteProduct = (req, res, next) => {
   Product.findById(prodId)
     .then(product => {
       product.destroy();
+      res.redirect('products')
     })
     .catch(err => {
       console.log(err);
